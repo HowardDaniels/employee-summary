@@ -7,15 +7,15 @@ class Engineer extends Employee {
   }
 
   getName() {
-    //  return 'I have a ' + this.carname;
-    }
+    console.log(`The employee's name is ${this.name}.`)
+   }
     getEmail() {
-      //  return 'I have a ' + this.carname;
+      console.log(`The employee's email address is ${this.email}.`)
     }
-    getRole() {
+   getRole() {
         //  return 'I have a ' + this.carname;
-        console.log(this.class);
-      }
+        console.log(`The employee's role is ${this.role}.`)
+   }
 
     getGithub(){}
   }
