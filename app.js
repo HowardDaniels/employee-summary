@@ -14,8 +14,15 @@ inquirer
   }
 ])
 
-.then({role}) => {
-    if(role = prompt.choices[0]){
-        console.log(3);
+.then(role => {
+  let EmployeeToWrite = "";
+    if(answers.role === answers.choices[0]){
+        EmployeeToWrite = Engineer;
+    }
+    else if(answers.role === answers.choices[1]){
+      EmployeeToWrite = Intern;
+    }
+    else if(answers.role === answers.choices[2]){
+      EmployeeToWrite = Manager;
     }
 });
