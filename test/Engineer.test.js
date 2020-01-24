@@ -43,8 +43,8 @@ const car = new Car(15, "blue", carPassengers);
 console.log("---CAR---"); */
 
 
-  getName()
-  getId()
-  getEmail()
-  getRole() // Overridden to return 'Engineer'
-  getGithub();
+  Engineer.getName()
+  Engineer.getId()
+  Engineer.getEmail()
+  Engineer.getRole() // Overridden to return 'Engineer'
+  Engineer.getGithub();

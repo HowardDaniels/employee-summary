@@ -11,6 +11,11 @@ inquirer
     message: "Role:",
     name: "role",
     choices: ["Engineer", "Intern", "Manager"]
+  },
+  {
+    type: "input",
+    message: "Email:",
+    name: "email",
   }
 ])
 
