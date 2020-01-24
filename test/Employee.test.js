@@ -12,7 +12,7 @@ class Employee {
     } */
     getRole() {
         //  return 'I have a ' + this.carname;
-        console.log(this.name);
+        console.log(this.class);
       }
   }
 
