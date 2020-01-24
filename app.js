@@ -1,5 +1,9 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
+const Employee = require("./test/Employee.test");
+const Engineer = require("./test/Engineer.test");
+const Intern = require("./test/Intern.test");
+const Manager = require("./test/Manager.test");
 
 inquirer
   .prompt([{
@@ -9,9 +13,9 @@ inquirer
     choices: ["Engineer", "Intern", "Manager"]
   }
 ])
-/*
-.then(function(role){
+
+.then({role}) => {
     if(role = prompt.choices[0]){
         console.log(3);
     }
-}); */
+});
