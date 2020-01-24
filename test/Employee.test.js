@@ -4,21 +4,16 @@ class Employee {
       this.id = id;
       this.title = title;
     }
-   /* getName() {
-    //  return 'I have a ' + this.carname;
-    }
+   getName() {
+    console.log(`The employee's name is ${this.name}.`)
+   }
     getEmail() {
-      //  return 'I have a ' + this.carname;
-    } */
-    getRole() {
+      console.log(`The employee's email address is ${this.email}.`)
+    }
+   getRole() {
         //  return 'I have a ' + this.carname;
-        console.log(this.class);
-      }
+        console.log(`The employee's role is ${this.role}.`)
+   }
   }
-
-  /*getName()
-  * getId()
-  * getEmail()
-  */ getRole() // Returns 'Employee'
 
   module.exports = Employee;
