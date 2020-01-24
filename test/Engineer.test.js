@@ -5,21 +5,22 @@ class Engineer extends Employee {
     super(name, id, "Engineer");
     this.github = github;
   }
-/*
-  useHorn() {
-    console.log(this.sound);
-  }
 
-  checkPassengerLength() {
-    if (this.passengers.length > 4) {
-      console.log("Cars only seat 4 people. You have too many passengers!");
-    } else {
-      console.log(`You have room for ${4 - this.passengers.length} people.`);
+  getName() {
+    //  return 'I have a ' + this.carname;
     }
-  }
-}
+    getEmail() {
+      //  return 'I have a ' + this.carname;
+    }
+    getRole() {
+        //  return 'I have a ' + this.carname;
+        console.log(this.class);
+      }
 
-const carPassengers = [
+    getGithub(){}
+  }
+
+/* const carPassengers = [
   {
     name: "Aristotle"
   },
@@ -42,8 +43,8 @@ const car = new Car(15, "blue", carPassengers);
 console.log("---CAR---"); */
 
 
-  /*getName()
-  * getId()
-  * getEmail()
-  */ getRole() // Overridden to return 'Engineer'
+  getName()
+  getId()
+  getEmail()
+  getRole() // Overridden to return 'Engineer'
   getGithub();
