@@ -1,9 +1,7 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 const Employee = require("./test/Employee.test");
-const Engineer = require("./test/Engineer.test");
-const Intern = require("./test/Intern.test");
-const Manager = require("./test/Manager.test");
+const choices = ["Engineer", "Intern", "Manager"];
 
 inquirer
   .prompt([{
@@ -19,15 +17,27 @@ inquirer
   }
 ])
 
-.then(role => {
+.then(answers => {
   let EmployeeToWrite = "";
-    if(answers.role === answers.choices[0]){
-        EmployeeToWrite = Engineer;
+    if(answers.role === choices[0]){
+        inquirer.prompt([{
+          type: "input",
+          message: "GitHub account:",
+          name: "GitHub"
+        }])
     }
-    else if(answers.role === answers.choices[1]){
-      EmployeeToWrite = Intern;
+    else if(answers.role === choices[1]){
+      inquirer.prompt([{
+        type: "input",
+        message: "College:",
+        name: "college"
+      }])
     }
-    else if(answers.role === answers.choices[2]){
-      EmployeeToWrite = Manager;
-    }
+    else if(answers.role === choices[2]){
+      inquirer.prompt([{
+        type: "input",
+        message: "Office number:",
+        name: "officeNumber"
+      }])
+}
 });
