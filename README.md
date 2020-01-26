@@ -1,6 +1,6 @@
 # employee-summary
 
-Memorizing names and email addresses can be difficult, so this command line application allows employees to enter in their team's info, and access it on a webpage, listing their team members' info, including name, email, and role.
+Memorizing names and email addresses can be difficult, so this command line application allows employees to enter in their team's info, and access it on a webpage, listing their team members' names, roles, and email addresses.
 
 The employees' specific roles are accounted for as well, as managers' office numbers, engineers' GitHub profiles, and interns' current schools will be listed.
 
