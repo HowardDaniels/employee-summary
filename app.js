@@ -85,13 +85,27 @@ inquirer.prompt([{
 
 if (answers.teamMembers >= 0){
 arr = [];
-var prompts = "";
 for (i = 1; i < (answers.teamMembers + 1); i++){
- arr.push(i);
- console.log(arr);
-prompts += "r";
-console.log(prompts);
+ arr.push({
+  type: "input",
+  message: "Team member #" + i  + " name:",
+  name: "name" + i,
+},
+{
+  type: "list",
+  message: "Team member #" + i + " role:",
+  name: "role" + i,
+  choices: ["Engineer", "Intern"]
+}, 
+{
+  type: "input",
+  message: "Team member #" + i + " email:",
+  name: "email" + i,
 }
+);
+}
+console.log(arr);
+inquirer.prompt(arr)
 }
 
 else if (answers.teamMembers === 0){
