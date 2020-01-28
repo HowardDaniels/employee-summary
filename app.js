@@ -6,37 +6,37 @@ const roleChoices = ["Engineer", "Intern"];
 
 
 
-function teamMemberPrompt(){
+const teamMemberPrompt = function teamMemberPrompt(i){
   inquirer.prompt([{
     type: "input",
-    message: "Team member name:",
-    name: "name",
+    message: "Team member #" + i  + " name:",
+    name: "name" + i,
   },
   {
     type: "list",
-    message: "Team member role:",
-    name: "role",
+    message: "Team member #" + i + " role:",
+    name: "role" + i,
     choices: ["Engineer", "Intern"]
   }, 
   {
     type: "input",
-    message: "Team member email:",
-    name: "email",
+    message: "Team member #" + i + " email:",
+    name: "email" + i,
 }])
          .then(answers =>{
            if(answers.role === roleChoices[0]){
              inquirer.prompt([
                { type: "input",
-             message: "GitHub account:",
-             name: "GitHub"
+             message: "Team member #" + i + "'s GitHub account:",
+             name: "GitHub" + i
              }]);
             }
 
            else if(answers.role === roleChoices[1]){
              inquirer.prompt([ 
                {type: "input",
-             message: "Current school:",
-             name: "currentSchool"
+             message: "Team member #" + i + "'s current school:",
+             name: "currentSchool" + i
             }]);
           }
         });
@@ -100,8 +100,8 @@ for (i = 1; i < (answers.numberOfTeamMembers + 1); i++){
  console.log(arr);
 }
 
-//arr.forEach(teamMemberPrompt()
- // );
+arr.forEach(teamMemberPrompt
+ );
  });
 }
 
