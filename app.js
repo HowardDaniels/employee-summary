@@ -3,45 +3,64 @@ const inquirer = require("inquirer");
 const Employee = require("./test/Employee.test");
 const yesNo = ["Yes", "No"];
 const roleChoices = ["Engineer", "Intern"];
-const teamMemberNamePrompt = {
-  type: "input",
-  message: "Team member name:",
-  name: "name",
-};
-const teamMemberRolePrompt = {
-  type: "list",
-  message: "Team member role:",
-  name: "role",
-  choices: ["Engineer", "Intern"]
-};
-const teamMemberEmailPrompt = {
-  type: "input",
-  message: "Team member email:",
-  name: "email",
-};
-const GitHubPrompt = {
-  type: "input",
-  message: "GitHub account:",
-  name: "GitHub"
-};
-const currentSchoolPrompt = {
-  type: "input",
-  message: "Current school:",
-  name: "currentSchool"
-};
+
+
 
 function teamMemberPrompt(){
-  inquirer.prompt([teamMemberNamePrompt, teamMemberRolePrompt, teamMemberEmailPrompt])
+  inquirer.prompt([{
+    type: "input",
+    message: "Team member name:",
+    name: "name",
+  },
+  {
+    type: "list",
+    message: "Team member role:",
+    name: "role",
+    choices: ["Engineer", "Intern"]
+  }, 
+  {
+    type: "input",
+    message: "Team member email:",
+    name: "email",
+}])
          .then(answers =>{
            if(answers.role === roleChoices[0]){
-             inquirer.prompt([GitHubPrompt]);
-           }
-           else if(answers.role === yesNo[1]){
-             inquirer.prompt([currentSchoolPrompt])
-           }
-          });
-};
+             inquirer.prompt([
+               { type: "input",
+             message: "GitHub account:",
+             name: "GitHub"
+             }]);
+            }
 
+           else if(answers.role === roleChoices[1]){
+             inquirer.prompt([ 
+               {type: "input",
+             message: "Current school:",
+             name: "currentSchool"
+            }]);
+          }
+        });
+      }
+/*
+function morePrompt(){
+  inquirer.prompt([{
+   type: "list",
+   message: "Would you like to add more team members?",
+   name: "moreTeamMembers",
+   choices: ["Yes", "No"] 
+ }])
+ .then(answers => {
+   if (answers.moreteamMembers === yesNo[0]){
+     teamMemberPrompt();
+   }
+
+   else {
+     console.log("Your profile is ready.");
+   }
+ })
+ };
+*/
+      
 inquirer.prompt([{
   type: "input",
   message: "Manager name:",
@@ -66,53 +85,28 @@ inquirer.prompt([{
 ])
 
 .then(answers => {
+
 if (answers.teamMembers === yesNo[0]){
-  inquirer.prompt([teamMemberNamePrompt,
-    {
-      type: "list",
-      message: "Team member role:",
-      name: "role",
-      choices: ["Engineer", "Intern"]
-    }, teamMemberEmailPrompt
-  ])
-  .then(answers => {
-    // let EmployeeToWrite = "";
-       if(answers.role === roleChoices[0]){
-           inquirer.prompt([{
-            type: "input",
-            message: "GitHub account:",
-            name: "GitHub"
-          },
-          {
-            type: "list",
-      message: "Would you like to add more team members?",
-      name: "moreTeamMembers",
-      choices: ["Yes", "No"]
-      }]);
-       }
-       else if(answers.role === roleChoices[1]){
-         inquirer.prompt([{
-          type: "input",
-          message: "Current school:",
-          name: "currentSchool"
-        },
-        {
-          type: "list",
-    message: "Would you like to add more team members?",
-    name: "moreTeamMembers",
-    choices: ["Yes", "No"]
-    }]);
-    if(answers.moreTeamMembers === yesNo[0]){
-      teamMemberPrompt();
-       }
-     else{
-       console.log("Team profile ready to view.");
-    }
-       }
-});
+ inquirer.prompt([{
+   type: "number",
+   message: "Number of (non-managing) team members:",
+   name: "numberOfTeamMembers"
+ }])
+ 
+ .then(answers => {
+   var arr = [];
+for (i = 1; i < (answers.numberOfTeamMembers + 1); i++){
+ arr.push(i);
+ console.log(arr);
+}
+
+//arr.forEach(teamMemberPrompt()
+ // );
+ });
 }
 
 else if (answers.teamMembers === yesNo[1]){
   console.log("Manager profile ready to view.");
 }
 });
+
