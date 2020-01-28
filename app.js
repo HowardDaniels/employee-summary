@@ -75,35 +75,26 @@ inquirer.prompt([{
   name: "officeNumber"
 },
 {
-  type: "list",
-  message: "Would you like to add team members?",
-  name: "teamMembers",
-  choices: ["Yes", "No"] 
+  type: "number",
+  message: "How many team members would you like to add?",
+  name: "teamMembers"
 }
 ])
-/*
+
 .then(answers => {
 
-if (answers.teamMembers === yesNo[0]){
- inquirer.prompt([{
-   type: "number",
-   message: "Number of (non-managing) team members:",
-   name: "numberOfTeamMembers"
- }])
- 
- .then(answers => {
-   var arr = [];
-for (i = 1; i < (answers.numberOfTeamMembers + 1); i++){
+if (answers.teamMembers >= 0){
+arr = [];
+var prompts = "";
+for (i = 1; i < (answers.teamMembers + 1); i++){
  arr.push(i);
  console.log(arr);
+prompts += "r";
+console.log(prompts);
+}
 }
 
-arr.forEach(teamMemberPrompt
- );
- });
-}
-
-else if (answers.teamMembers === yesNo[1]){
+else if (answers.teamMembers === 0){
   console.log("Manager profile ready to view.");
 }
 });
