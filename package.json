@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/HowardDaniels/employee-summary#readme",
   "dependencies": {
-    "inquirer": "^7.0.3"
+    "inquirer": "^7.0.3",
+    "inquirer-recursive": "0.0.6"
   }
 }

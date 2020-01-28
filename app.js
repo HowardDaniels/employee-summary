@@ -4,8 +4,7 @@ const Employee = require("./test/Employee.test");
 const yesNo = ["Yes", "No"];
 const roleChoices = ["Engineer", "Intern"];
 
-
-
+/*
 const teamMemberPrompt = function teamMemberPrompt(i){
   inquirer.prompt([{
     type: "input",
@@ -41,7 +40,7 @@ const teamMemberPrompt = function teamMemberPrompt(i){
           }
         });
       }
-/*
+
 function morePrompt(){
   inquirer.prompt([{
    type: "list",
@@ -59,8 +58,7 @@ function morePrompt(){
    }
  })
  };
-*/
-      
+    */
 inquirer.prompt([{
   type: "input",
   message: "Manager name:",
@@ -83,7 +81,7 @@ inquirer.prompt([{
   choices: ["Yes", "No"] 
 }
 ])
-
+/*
 .then(answers => {
 
 if (answers.teamMembers === yesNo[0]){
@@ -109,8 +107,8 @@ else if (answers.teamMembers === yesNo[1]){
   console.log("Manager profile ready to view.");
 }
 });
-
 /*
+
 inquirer.registerPrompt('recursive', require('inquirer-recursive'));
 inquirer.prompt([{
     type: 'recursive',
@@ -138,7 +136,6 @@ inquirer.prompt([{
     ]
 }]).then(function(answers) {
     console.log(answers.users);
-    /*
     OUTPUT :
     [
         {
@@ -148,7 +145,6 @@ inquirer.prompt([{
             name: 'Jordan Walke',
             age: '13',
         },
-        ...
     ]
     
 }); */
