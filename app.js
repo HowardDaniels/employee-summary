@@ -83,39 +83,40 @@ inquirer.prompt([{
 
 .then(answers => {
 
-if (answers.engineers >= 0){
-arr = [];
-for (i = 1; i < (answers.engineers + 1); i++){
- arr.push({
-  type: "input",
-  message: "Engineer #" + i  + "'s name:",
-  name: "engineerName" + i,
-},
-{
-  type: "input",
-  message: "Engineer #" + i + "'s email:",
-  name: "engineerEmail" + i,
-},
-{
-  type: "input",
-  message: "Engineer #" + i + "'s GitHub:",
-  name: "engineerGitHub" + i,
-}
-);
-}
-console.log(arr);
+  if (answers.engineers >= 0){
+    arr = [];
+    for (i = 1; i < (answers.engineers + 1); i++){
+      arr.push(
+      {
+        type: "input",
+        message: "Engineer #" + i  + "'s name:",
+        name: "engineerName" + i,
+      },
+      {
+        type: "input",
+        message: "Engineer #" + i + "'s email:",
+        name: "engineerEmail" + i,
+      },
+      {
+        type: "input",
+        message: "Engineer #" + i + "'s GitHub:",
+        name: "engineerGitHub" + i,
+      });
+    }
+    arr.push(
+      {
+        type: "number",
+        message: "How many interns would you like to add?",
+        name: "interns"
+      });
+
 inquirer
 .prompt(arr)
-.then(
-  inquirer
-  .prompt([{
-    type: "number",
-    message: "How many interns would you like to add?",
-    name: "interns"
-  }]).then(answers => {
+.then(answers => {
     if (answers.interns >= 0){
+      arr2 = [];
       for (i = 1; i < (answers.interns + 1); i++){
-        arr.push({
+        arr2.push({
          type: "input",
          message: "Intern #" + i  + "'s name:",
          name: "internName" + i,
@@ -132,27 +133,33 @@ inquirer
        }
        );
        }
+       console.log(arr2);
+       inquirer
+       .prompt(arr2)
+     
+   //      console.log("Profile of manager, engineers, and interns is ready.")
+       
     }
-
     else {
       console.log("Profile of manager and engineers ready to view.");
     }
-  }
-  )
-)
-}
 
-else {
-  inquirer
-  .prompt([{
-    type: "number",
-    message: "How many interns would you like to add?",
-    name: "interns2"
-  }])
+  });
+}
+  else {
+    inquirer
+    .prompt([
+      {
+      type: "number",
+      message: "How many interns would you like to add?",
+      name: "interns2"
+      }
+])
   .then(answers => {
     if (answers.interns2 >= 0){
+      arr3 = [];
       for (i = 1; i < (answers.interns2 + 1); i++){
-        arr.push({
+        arr3.push({
          type: "input",
          message: "Intern #" + i  + "'s name:",
          name: "internName" + i,
@@ -169,6 +176,9 @@ else {
        }
        );
        }
+       console.log(arr3);
+       inquirer
+       .prompt(arr3)
     }
   });
 }
