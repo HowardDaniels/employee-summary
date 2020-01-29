@@ -4,61 +4,6 @@ const Employee = require("./test/Employee.test");
 const yesNo = ["Yes", "No"];
 const roleChoices = ["Engineer", "Intern"];
 
-/*
-const teamMemberPrompt = function teamMemberPrompt(i){
-  inquirer.prompt([{
-    type: "input",
-    message: "Team member #" + i  + " name:",
-    name: "name" + i,
-  },
-  {
-    type: "list",
-    message: "Team member #" + i + " role:",
-    name: "role" + i,
-    choices: ["Engineer", "Intern"]
-  }, 
-  {
-    type: "input",
-    message: "Team member #" + i + " email:",
-    name: "email" + i,
-}])
-         .then(answers =>{
-           if(answers.role === roleChoices[0]){
-             inquirer.prompt([
-               { type: "input",
-             message: "Team member #" + i + "'s GitHub account:",
-             name: "GitHub" + i
-             }]);
-            }
-
-           else if(answers.role === roleChoices[1]){
-             inquirer.prompt([ 
-               {type: "input",
-             message: "Team member #" + i + "'s current school:",
-             name: "currentSchool" + i
-            }]);
-          }
-        });
-      }
-
-function morePrompt(){
-  inquirer.prompt([{
-   type: "list",
-   message: "Would you like to add more team members?",
-   name: "moreTeamMembers",
-   choices: ["Yes", "No"] 
- }])
- .then(answers => {
-   if (answers.moreteamMembers === yesNo[0]){
-     teamMemberPrompt();
-   }
-
-   else {
-     console.log("Your profile is ready.");
-   }
- })
- };
-    */
 inquirer.prompt([{
   type: "input",
   message: "Manager name:",
@@ -184,43 +129,62 @@ inquirer
 }
 });
 /*
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/main.css">
+    </head>
+    <body>
+           <div class="row">
 
-inquirer.registerPrompt('recursive', require('inquirer-recursive'));
-inquirer.prompt([{
-    type: 'recursive',
-    message: 'Add a new user ?',
-    name: 'users',
-    prompts: [
-        {
-            type: 'input',
-            name: 'name',
-            message: 'What is user\'s name?',
-            validate: function (value) {
-                if ((/.+/).test(value)) { return true; }
-                return 'name is required';
-            }
-        }, {
-            type: 'input',
-            name: 'age',
-            message: 'How old is he?',
-            validate: function (value) {
-                var digitsOnly = /\d+/;
-                if (digitsOnly.test(value)) { return true; }
-                return 'Invalid age! Must be a number genius!';
-            }
-        }
-    ]
-}]).then(function(answers) {
-    console.log(answers.users);
-    OUTPUT :
-    [
-        {
-            name: 'Brendan Eich',
-            age: '42',
-        }, {
-            name: 'Jordan Walke',
-            age: '13',
-        },
-    ]
-    
-}); */
+            <div class="col-md-3">
+                <div class="row" id="top_1">
+                    <br>
+                    <p class="name">${answers.name}Jane Doe</p>
+                    <p class="role">${answers.engineer}Engineer</p>
+                    <br>
+                </div>
+               <div class="row" id="bottom_1">
+                   <table class="infotable">
+                       <tr><td>ID: 123</td></tr>
+                       <tr><td>Email: janedoe@web.com</td></tr>
+                       <tr><td>GitHub: JaneDoe</td></tr>
+                   </table>
+               </div>
+            </div>
+
+            <div class="col-md-3">
+            <div class="row" id="top_2">
+                <br>
+                <p class="name">John Doe</p>
+                <p class="role">Intern</p>
+                <br>
+            </div>
+           <div class="row" id="bottom_2">
+               <table class="infotable">
+                   <tr><td>ID: 124</td></tr>
+                   <tr><td>Email: johndoe@web.com</td></tr>
+                   <tr><td>Current school: George Washington University</td></tr>
+               </table>
+           </div>
+           </div>
+
+           <div class="col-md-3">
+            <div class="row" id="top_3">
+                <br>
+                <p class="name">Joseph Doe</p>
+                <p class="role">Manager</p>
+                <br>
+            </div>
+           <div class="row" id="bottom_3">
+               <table class="infotable">
+                   <tr><td>ID: 125</td></tr>
+                   <tr><td>Email: josephdoe@web.com</td></tr>
+                   <tr><td>Office number: 456</td></tr>
+               </table>
+           </div>
+           </div>
+
+           </div>
+    </body>
+</html> */

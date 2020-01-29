@@ -1,66 +1,12 @@
-.col-md-3{
-    margin-left: 50px;
+.header{
+background-color: red;
+color: white;
+height: 150px;
+font-size: 48px;
+font-family: 'Times New Roman', Times, serif;
+text-align: center;
 }
 
-.name{
-    text-align: center;
-    margin-left: 100px;
-    font-size: 36px;
-}
-
-.role{
-    text-align: center;
-    margin-left: 100px;
-    font-size: 24px;
-}
-
-#top_1{
-    background-color: blue;
-    height: 150px;
-    color: white;
-    text-align: center;
-}
-
-#top_2{
-    background-color: blue;
-    height: 150px;
-    color: white;
-    text-align: center;
-}
-
-#top_3{
-    background-color: blue;
-    height: 150px;
-    color: white;
-    text-align: center;
-}
-
-#bottom_1{
-    background-color: white;
-    color: black;
-    height: 350px;
-    border: 1px solid black;
-    padding: 10px;
-}
-
-#bottom_2{
-    background-color: white;
-    color: black;
-    height: 350px;
-    border: 1px solid black;
-    padding: 10px;
-}
-
-#bottom_3{
-    background-color: white;
-    color: black;
-    height: 350px;
-    border: 1px solid black;
-    padding: 10px;
-}
-
-.infotable, tr, td{
-    border: 1px solid black;
-    padding: 5px;
-    margin-left: 50px;
+.row{
+    background-color: yellow;
 }
