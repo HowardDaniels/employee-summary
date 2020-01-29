@@ -49,8 +49,25 @@ inquirer.prompt([{
            </table>
        </div>
        </div>
+       </div>
 </body>
 </html>`;
+
+const managerRow = `<div class="row">
+<div class="col-md-3">
+<div class="row" id="top">
+ <br>
+ <p id="name">${answers.name}</p>
+ <p id="role">Manager</p>
+ <br>
+</div>
+<div class="row" id="bottom">
+<table id="infotable">
+    <tr><td>ID: ${answers.ID}</td></tr>
+    <tr><td>Office number: ${answers.officeNumber}</td></tr>
+</table>
+</div>
+</div>`;
 
 
 
@@ -84,7 +101,55 @@ inquirer.prompt([{
 inquirer
 .prompt(arr)
 .then(answers => {
-    if (answers.interns >= 0){
+var engineerNameNumbers = [];
+var engineerIDNumbers = [];
+var engineerGitHubNumbers = [];
+var engineerRows = [];
+  for (i = 1; i < (arr.length - 1); i++){
+    engineerNameNumbers.push("answers.engineerName" + i)
+    engineerIDNumbers.push("answers.engineerID" + i)
+    engineerGitHubNumbers.push("answers.engineerGitHub" + i)
+  }
+
+  console.log(engineerNameNumbers);
+  console.log(engineerIDNumbers);
+  console.log(engineerGitHubNumbers);
+
+  for (i = 0; i < (arr.length - 2); i++){
+    engineerRows.push(`<div class="row">
+    <div class="col-md-3">
+    <div class="row" id="top">
+     <br>
+     <p id="name">${engineerNameNumbers[i]}</p>
+     <p id="role">Manager</p>
+     <br>
+    </div>
+    <div class="row" id="bottom">
+    <table id="infotable">
+        <tr><td>ID: ${engineerIDNumbers[i]}</td></tr>
+        <tr><td>GitHub: ${engineerGitHubNumbers[i]}</td></tr>
+    </table>
+    </div>
+    </div>
+    </div>`);
+  }
+
+const formattedEngineerRows = engineerRows.join("");
+
+  console.log(engineerRows);
+
+  const engineerAndManagerProfile = `<html>
+  <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="../templates/assets/manager.css">
+  </head>
+  <body>
+  ${managerRow}
+        ${formattedEngineerRows}
+  </body>
+  </html>`;
+
+    if (answers.interns > 0){
       arr2 = [];
       for (i = 1; i < (answers.interns + 1); i++){
         arr2.push({
@@ -112,6 +177,11 @@ inquirer
        
     }
     else {
+      fs.writeFile("output/index.html", engineerAndManagerProfile, function(err) {
+        if (err) {
+          throw err;
+        }
+      });
       console.log("Profile of manager and engineers ready to view.");
     }
 
