@@ -1,20 +1,28 @@
-class Employee {
-    constructor(name, id, title){
-      this.name= name;
-      this.id = id;
-      this.title = title;
-    }
-    /*
-   getName() {
-    console.log(`The employee's name is ${answers.name}.`)
-   }
-    getEmail() {
-      console.log(`The employee's email address is ${answers.email}.`)
-    }
-   getRole() {
-        //  return 'I have a ' + this.carname;
-        console.log(`The employee's role is ${answers.role}.`)
-   } */
-  }
+/*const Word = require("../lib/Word");
 
-  module.exports = Employee;
+describe("Word class", () => {
+  describe("guessLetter", () => {
+    it("Correct guess returns true", () => {
+      expect(new Word("fish").guessLetter("i")).toBe(true);
+    });
+
+    it("Incorrect guess returns false", () => {
+      expect(new Word("fish").guessLetter("o")).toBe(false);
+    });
+  });
+
+  describe("guessedCorrectly ", () => {
+    it("returns true if all letters are correct", () => {
+      const word = new Word("hi");
+      word.guessLetter("h");
+      word.guessLetter("i");
+      expect(word.guessedCorrectly()).toBe(true);
+    });
+    it("returns false if at least one letter is incorrect", () => {
+      const word = new Word("hi");
+      word.guessLetter("h");
+      word.guessLetter("a");
+      expect(word.guessedCorrectly()).toBe(false);
+    });
+  });
+}); */

@@ -1,50 +1,28 @@
-const Employee = require("./Employee.test");
+/*const Word = require("../lib/Word");
 
-class Intern extends Employee {
-  constructor(school) {
-    super(name, id, "Intern");
-    this.school = school;
-  }
+describe("Word class", () => {
+  describe("guessLetter", () => {
+    it("Correct guess returns true", () => {
+      expect(new Word("fish").guessLetter("i")).toBe(true);
+    });
 
-  getName() {
-    console.log(`The employee's name is ${this.name}.`)
-   }
-    getEmail() {
-      console.log(`The employee's email address is ${this.email}.`)
-    }
-   getRole() {
-        //  return 'I have a ' + this.carname;
-        console.log(`The employee's role is ${this.role}.`)
-   }
+    it("Incorrect guess returns false", () => {
+      expect(new Word("fish").guessLetter("o")).toBe(false);
+    });
+  });
 
-    getSchool(){}
-  }
-
-/* const carPassengers = [
-  {
-    name: "Aristotle"
-  },
-  {
-    name: "Confucius"
-  },
-  {
-    name: "Socrates"
-  },
-  {
-    name: "Lao-Tzu"
-  },
-  {
-    name: "Plato"
-  }
-];
-
-const car = new Car(15, "blue", carPassengers);
-
-console.log("---CAR---"); */
-
-
-  getName()
-  getId()
-  getEmail()
-  getRole() // Overridden to return 'Intern'
-  getSchool();
+  describe("guessedCorrectly ", () => {
+    it("returns true if all letters are correct", () => {
+      const word = new Word("hi");
+      word.guessLetter("h");
+      word.guessLetter("i");
+      expect(word.guessedCorrectly()).toBe(true);
+    });
+    it("returns false if at least one letter is incorrect", () => {
+      const word = new Word("hi");
+      word.guessLetter("h");
+      word.guessLetter("a");
+      expect(word.guessedCorrectly()).toBe(false);
+    });
+  });
+}); */
