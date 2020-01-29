@@ -31,7 +31,7 @@ inquirer.prompt([{
   const managerProfile = `<html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="assets/manager.css">
+<link rel="stylesheet" href="../templates/assets/manager.css">
 </head>
 <body>
        <div class="row">
@@ -40,7 +40,6 @@ inquirer.prompt([{
             <br>
             <p id="name">${answers.name}</p>
             <p id="role">Manager</p>
-            <p id="id">${answers.ID}</p>
             <br>
         </div>
        <div class="row" id="bottom">
@@ -155,7 +154,7 @@ inquirer
 
     else {
     
-    fs.writeFile("index.html", managerProfile, function(err) {
+    fs.writeFile("output/index.html", managerProfile, function(err) {
       if (err) {
         throw err;
       }
