@@ -26,35 +26,36 @@ inquirer.prompt([{
 }
 ])
 
-.then(answers => {
-
+.then(answers => {  
+  
   const managerProfile = `<html>
-  <head>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="assets/manager.css">
-  </head>
-  <body>
-         <div class="row">
-             <div class="col-md-3">
-          <div class="row" id="top">
-              <br>
-              <p id="name">${answers.name}</p>
-              <p id="role">Manager</p>
-              <p id="id">${answers.ID}</p>
-              <br>
-          </div>
-         <div class="row" id="bottom">
-             <table id="infotable">
-                 <tr><td>ID: 123</td></tr>
-                 <tr><td>ID: user@web.com</td></tr>
-                 <tr><td>Office number: 456</td></tr>
-             </table>
-         </div>
-         </div>
-  </body>
+</head>
+<body>
+       <div class="row">
+           <div class="col-md-3">
+        <div class="row" id="top">
+            <br>
+            <p id="name">${answers.name}</p>
+            <p id="role">Manager</p>
+            <p id="id">${answers.ID}</p>
+            <br>
+        </div>
+       <div class="row" id="bottom">
+           <table id="infotable">
+               <tr><td>ID: ${answers.ID}</td></tr>
+               <tr><td>Office number: ${answers.officeNumber}</td></tr>
+           </table>
+       </div>
+       </div>
+</body>
 </html>`;
 
-  if (answers.engineers >= 0){
+
+
+  if (answers.engineers > 0){
     arr = [];
     for (i = 1; i < (answers.engineers + 1); i++){
       arr.push(
@@ -127,7 +128,7 @@ inquirer
       }
 ])
   .then(answers => {
-    if (answers.interns2 >= 0){
+    if (answers.interns2 > 0){
       arr3 = [];
       for (i = 1; i < (answers.interns2 + 1); i++){
         arr3.push({
@@ -150,6 +151,15 @@ inquirer
        console.log(arr3);
        inquirer
        .prompt(arr3)
+    }
+
+    else {
+    
+    fs.writeFile("index.html", managerProfile, function(err) {
+      if (err) {
+        throw err;
+      }
+    });
     }
   });
 }
