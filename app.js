@@ -64,7 +64,7 @@ inquirer.prompt([{
         name: "engineerName" + i,
       },
       {
-        type: "input",
+        type: "number",
         message: "Engineer #" + i + "'s ID:",
         name: "engineerID" + i,
       },
@@ -93,7 +93,7 @@ inquirer
          name: "internName" + i,
        },
        {
-         type: "input",
+         type: "number",
          message: "Intern #" + i + "'s ID:",
          name: "internID" + i,
        },
@@ -136,7 +136,7 @@ inquirer
          name: "internName" + i,
        },
        {
-         type: "input",
+         type: "number",
          message: "Intern #" + i + "'s ID:",
          name: "internID" + i,
        },
