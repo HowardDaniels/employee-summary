@@ -10,9 +10,9 @@ inquirer.prompt([{
   name: "name"
 },
 {
-  type: "input",
-  message: "Manager email:",
-  name: "email"
+  type: "number",
+  message: "Manager ID:",
+  name: "ID"
 },
 {
   type: "input",
@@ -28,6 +28,32 @@ inquirer.prompt([{
 
 .then(answers => {
 
+  const managerProfile = `<html>
+  <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/manager.css">
+  </head>
+  <body>
+         <div class="row">
+             <div class="col-md-3">
+          <div class="row" id="top">
+              <br>
+              <p id="name">${answers.name}</p>
+              <p id="role">Manager</p>
+              <p id="id">${answers.ID}</p>
+              <br>
+          </div>
+         <div class="row" id="bottom">
+             <table id="infotable">
+                 <tr><td>ID: 123</td></tr>
+                 <tr><td>ID: user@web.com</td></tr>
+                 <tr><td>Office number: 456</td></tr>
+             </table>
+         </div>
+         </div>
+  </body>
+</html>`;
+
   if (answers.engineers >= 0){
     arr = [];
     for (i = 1; i < (answers.engineers + 1); i++){
@@ -39,8 +65,8 @@ inquirer.prompt([{
       },
       {
         type: "input",
-        message: "Engineer #" + i + "'s email:",
-        name: "engineerEmail" + i,
+        message: "Engineer #" + i + "'s ID:",
+        name: "engineerID" + i,
       },
       {
         type: "input",
@@ -68,8 +94,8 @@ inquirer
        },
        {
          type: "input",
-         message: "Intern #" + i + "'s email:",
-         name: "internEmail" + i,
+         message: "Intern #" + i + "'s ID:",
+         name: "internID" + i,
        },
        {
          type: "input",
@@ -111,8 +137,8 @@ inquirer
        },
        {
          type: "input",
-         message: "Intern #" + i + "'s email:",
-         name: "internEmail" + i,
+         message: "Intern #" + i + "'s ID:",
+         name: "internID" + i,
        },
        {
          type: "input",
@@ -128,63 +154,3 @@ inquirer
   });
 }
 });
-/*
-<html>
-    <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="assets/main.css">
-    </head>
-    <body>
-           <div class="row">
-
-            <div class="col-md-3">
-                <div class="row" id="top_1">
-                    <br>
-                    <p class="name">${answers.name}Jane Doe</p>
-                    <p class="role">${answers.engineer}Engineer</p>
-                    <br>
-                </div>
-               <div class="row" id="bottom_1">
-                   <table class="infotable">
-                       <tr><td>ID: 123</td></tr>
-                       <tr><td>Email: janedoe@web.com</td></tr>
-                       <tr><td>GitHub: JaneDoe</td></tr>
-                   </table>
-               </div>
-            </div>
-
-            <div class="col-md-3">
-            <div class="row" id="top_2">
-                <br>
-                <p class="name">John Doe</p>
-                <p class="role">Intern</p>
-                <br>
-            </div>
-           <div class="row" id="bottom_2">
-               <table class="infotable">
-                   <tr><td>ID: 124</td></tr>
-                   <tr><td>Email: johndoe@web.com</td></tr>
-                   <tr><td>Current school: George Washington University</td></tr>
-               </table>
-           </div>
-           </div>
-
-           <div class="col-md-3">
-            <div class="row" id="top_3">
-                <br>
-                <p class="name">Joseph Doe</p>
-                <p class="role">Manager</p>
-                <br>
-            </div>
-           <div class="row" id="bottom_3">
-               <table class="infotable">
-                   <tr><td>ID: 125</td></tr>
-                   <tr><td>Email: josephdoe@web.com</td></tr>
-                   <tr><td>Office number: 456</td></tr>
-               </table>
-           </div>
-           </div>
-
-           </div>
-    </body>
-</html> */
