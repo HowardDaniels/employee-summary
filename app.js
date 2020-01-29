@@ -98,6 +98,8 @@ const managerRow = `<div class="row">
         name: "interns"
       });
 
+      const engineerNum = ((arr.length - 1) / 3);
+
 inquirer
 .prompt(arr)
 .then(answers => {
@@ -105,7 +107,7 @@ var engineerNameNumbers = [];
 var engineerIDNumbers = [];
 var engineerGitHubNumbers = [];
 var engineerRows = [];
-  for (i = 1; i < (arr.length - 1); i++){
+  for (i = 1; i < (engineerNum + 1); i++){
     engineerNameNumbers.push("answers.engineerName" + i)
     engineerIDNumbers.push("answers.engineerID" + i)
     engineerGitHubNumbers.push("answers.engineerGitHub" + i)
@@ -115,13 +117,13 @@ var engineerRows = [];
   console.log(engineerIDNumbers);
   console.log(engineerGitHubNumbers);
 
-  for (i = 0; i < (arr.length - 2); i++){
+  for (i = 0; i < (engineerNum); i++){
     engineerRows.push(`<div class="row">
     <div class="col-md-3">
     <div class="row" id="top">
      <br>
      <p id="name">${engineerNameNumbers[i]}</p>
-     <p id="role">Manager</p>
+     <p id="role">Engineer</p>
      <br>
     </div>
     <div class="row" id="bottom">
