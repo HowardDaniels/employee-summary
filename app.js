@@ -24,8 +24,8 @@ inquirer.prompt([{
 },
 {
   type: "number",
-  message: "How many engineers would you like to add?",
-  name: "engineers"
+  message: "How many team members would you like to add?",
+  name: "teamMembers"
 }
 ])
 
@@ -80,12 +80,12 @@ const managerRow = `<div class="row">
 /* If the manager chooses to add engineer, the following prompts are asked of the user, looped through a
 certain number of times depending on how many engineers the user wishes to provide. */
 
-  if (ManagerQuestions.engineers > 0){
-    engineerQuestions = [];
-    console.log("STARTS HERE")
-    console.timeLog(JSON.stringify(ManagerQuestions.engineers))
-    console.log(ManagerQuestions)
-    for (i = 1; i < (ManagerQuestions.engineers + 1); i++){
+  if (ManagerQuestions.teamMembers > 0){
+    teamMemberQuestions = [];
+    console.log("STARTS HERE");
+    console.timeLog(JSON.stringify(ManagerQuestions.teamMembers));
+    console.log(ManagerQuestions);
+    for (i = 1; i < (ManagerQuestions.teamMembers + 1); i++){
         engineerQuestions.push(
       {
         type: "input",
@@ -212,6 +212,8 @@ const formattedEngineerRows = engineerRows.join("");
 
   });
 }
+
+/*
   else {
     inquirer
     .prompt([
@@ -251,7 +253,7 @@ const formattedEngineerRows = engineerRows.join("");
     
     fs.writeFile("output/index.html", managerProfile, function(err) {
       if (err) {
-        throw err;
+        throw err; 
       }
     });
     }
