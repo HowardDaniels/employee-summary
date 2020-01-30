@@ -84,6 +84,21 @@ function askTeamMemberQuestions2(){
   .then(teamMemberQuestions => {
     console.log(teamMemberQuestions.role)
     if (teamMemberQuestions.role == "Engineer"){
+
+      var engineerRow = `
+
+<div class="row">
+           <div class="col-md-3">
+        <div class="row" id="top">
+            <br>
+            <p id="name">${teamMemberRoleQuestions.teamMemberName}</p>
+            <p id="role">Engineer</p>
+            <br>
+        </div>
+       <div class="row" id="bottom">
+           <table id="infotable">
+               <tr><td>ID: ${teamMemberQuestions.teamMemberID}</td></tr>`
+
       inquirer
       .prompt(gitAskAgain)
       .then(gitAskAgain => {
