@@ -29,6 +29,18 @@ const currentSchoolQuestion = [{
   name: "currentSchool"
 }]
 
+const askAgain = [{
+  type: "input",
+  message: "Would you like to add another team member?",
+  name: "addTeamMember",
+  choices: yesNo
+}] 
+
+function askTeamQuestions(){
+  inquirer
+  .prompt(teamMemberQuestions)
+}
+
 
 /* This prompts the user about the manager (these are required fields).
 The user is then asked how many engineers he or she would like to add to the profile. */
@@ -49,10 +61,12 @@ inquirer.prompt([{
   name: "officeNumber"
 },
 {
-  type: "number",
-  message: "How many team members would you like to add?",
-  name: "teamMembers"
+  type: "input",
+  message: "Would you like to add a team member?",
+  name: "addTeamMember",
+  choices: yesNo
 }
+
 ])
 
 .then(ManagerQuestions => {
@@ -106,12 +120,47 @@ const managerRow = `<div class="row">
 /* If the manager chooses to add engineer, the following prompts are asked of the user, looped through a
 certain number of times depending on how many engineers the user wishes to provide. */
 
+if (ManagerQuestions.addTeamMember = yesNo[0]){
+  inquirer
+  .prompt(teamMemberQuestions)
+  .then(teamMemberQuestions => {
+    if (teamMemberQuestions.role = roleChoices[0]){
+      inquirer
+      .prompt(GitHubQuestion, askAgain)
+      .then(promptAgain => {
+        if(promptAgain.askAgain = yesNo[0]){
+          askTeamMemberQuestions();
+        }
+      })
+    }
+    else {
+      inquirer
+      .prompt(currentSchoolQuestion, askAgain)
+      .then()
+    }
+  }
+  )
+}
+
+else{
+  fs.writeFile("output/index.html", managerProfile, function(err) {
+    if (err) {
+      throw err;
+    }
+  });
+  console.log("Profile of manager is ready to view.");
+}
+
+
+/*
+
   if (ManagerQuestions.teamMembers > 0){
  //   teamMemberQuestions = [];
     console.log("STARTS HERE");
     console.timeLog(JSON.stringify(ManagerQuestions.teamMembers));
     console.log(ManagerQuestions);
 
+    .forEach(patron => console.log(patron.age));
 
     /*
     for (i = 1; i < (ManagerQuestions.teamMembers + 1); i++){
@@ -145,6 +194,7 @@ certain number of times depending on how many engineers the user wishes to provi
 /*
       const engineerNum = ((engineerQuestions.length - 1) / 3);
 */
+/*
 inquirer
 .prompt(engineerQuestions)
 .then(engineerQuestions => {
@@ -203,7 +253,7 @@ const formattedEngineerRows = engineerRows.join("");
 */
 
 /* Prompts the user about the interns. */
-
+/*
     if (engineerQuestions.interns > 0){
       internQuestions = [];
       for (i = 1; i < (engineerQuestions.interns + 1); i++){
