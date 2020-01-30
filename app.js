@@ -112,15 +112,15 @@ certain number of times depending on how many engineers the user wishes to provi
         message: "How many interns would you like to add?",
         name: "interns"
       });
-
+/*
       const engineerNum = ((engineerQuestions.length - 1) / 3);
-
+*/
 inquirer
 .prompt(engineerQuestions)
-.then(ManagerQuestions => {
+.then(engineerQuestions => {
   console.log("MY PRINT")
   console.log(engineerQuestions);
-
+/*
 
 var engineerNameNumbers = [];
 var engineerIDNumbers = [];
@@ -170,6 +170,7 @@ const formattedEngineerRows = engineerRows.join("");
         ${formattedEngineerRows}
   </body>
   </html>`;
+*/
 
 /* Prompts the user about the interns. */
 
