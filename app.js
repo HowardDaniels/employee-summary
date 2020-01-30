@@ -35,9 +35,86 @@ const currentSchoolQuestion = {
 const askAgain = {
   type: "list",
   message: "Would you like to add another team member?",
-  name: "addTeamMember",
+  name: "addAnotherTeamMember",
   choices: ["Yes", "No"]
 }
+
+const gitAskAgain = [GitHubQuestion, askAgain];
+const schoolAskAgain = [currentSchoolQuestion, askAgain];
+
+function askTeamMemberQuestions(){
+  inquirer
+  .prompt(teamMemberQuestions)
+  .then(teamMemberQuestions => {
+    console.log(teamMemberQuestions.role)
+    if (teamMemberQuestions.role == "Engineer"){
+      inquirer
+      .prompt(gitAskAgain)
+      .then(gitAskAgain => {
+        if(gitAskAgain.addAnotherTeamMember == "Yes"){
+          console.log("//");
+          askTeamMemberQuestions2();
+        }
+        else if (gitAskAgain.addAnotherTeamMember == "No"){
+          console.log("000");
+        }
+        })
+      }
+    else if (teamMemberQuestions.role == "Intern") {
+      console.log(teamMemberQuestions.role);
+      inquirer
+      .prompt(schoolAskAgain)
+      .then(schoolAskAgain => {
+        if (schoolAskAgain.addAnotherTeamMember == "Yes"){
+          console.log("//");
+          askTeamMemberQuestions2();
+        }
+        else if (schoolAskAgain.addAnotherTeamMember == "No"){
+          console.log("000");
+        }
+      })
+    }
+  }
+  )
+}
+
+function askTeamMemberQuestions2(){
+  inquirer
+  .prompt(teamMemberQuestions)
+  .then(teamMemberQuestions => {
+    console.log(teamMemberQuestions.role)
+    if (teamMemberQuestions.role == "Engineer"){
+      inquirer
+      .prompt(gitAskAgain)
+      .then(gitAskAgain => {
+        if(gitAskAgain.addAnotherTeamMember == "Yes"){
+          console.log("//");
+          askTeamMemberQuestions();
+        }
+        else if (gitAskAgain.addAnotherTeamMember == "No"){
+          console.log("000");
+        }
+        })
+      }
+    else if (teamMemberQuestions.role == "Intern") {
+      console.log(teamMemberQuestions.role);
+      inquirer
+      .prompt(schoolAskAgain)
+      .then(schoolAskAgain => {
+        if (schoolAskAgain.addAnotherTeamMember == "Yes"){
+          console.log("//");
+          askTeamMemberQuestions();
+        }
+        else if (schoolAskAgain.addAnotherTeamMember == "No"){
+          console.log("000");
+        }
+      })
+    }
+  }
+  )
+}
+
+
 /*
 function askTeamMemberQuestions(){
   inquirer
@@ -142,12 +219,13 @@ if (ManagerQuestions.addTeamMember == "Yes"){
     console.log(teamMemberQuestions.role)
     if (teamMemberQuestions.role == "Engineer"){
       inquirer
-      .prompt([GitHubQuestion, askAgain])
-      .then(teamMemberQuestions => {
-        if(teamMemberQuestions.askAgain == "Yes"){
+      .prompt(gitAskAgain)
+      .then(gitAskAgain => {
+        if(gitAskAgain.addAnotherTeamMember == "Yes"){
           console.log("//");
+          askTeamMemberQuestions();
         }
-        else if (teamMemberQuestions.askAgain == "No"){
+        else if (gitAskAgain.addAnotherTeamMember == "No"){
           console.log("000");
         }
         })
@@ -155,12 +233,13 @@ if (ManagerQuestions.addTeamMember == "Yes"){
     else if (teamMemberQuestions.role == "Intern") {
       console.log(teamMemberQuestions.role);
       inquirer
-      .prompt([currentSchoolQuestion, askAgain])
-      .then(teamMemberQuestions => {
-        if (teamMemberQuestions.askAgain == "Yes"){
+      .prompt(schoolAskAgain)
+      .then(schoolAskAgain => {
+        if (schoolAskAgain.addAnotherTeamMember == "Yes"){
           console.log("//");
+          askTeamMemberQuestions();
         }
-        else if (teamMemberQuestions.askAgain == "No"){
+        else if (schoolAskAgain.addAnotherTeamMember == "No"){
           console.log("000");
         }
       })
