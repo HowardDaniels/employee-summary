@@ -1,8 +1,6 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 const Employee = require("./test/Employee.test");
-const yesNo = ["Yes", "No"];
-const roleChoices = ["Engineer", "Intern"];
 
 const teamMemberQuestions = [{
       
@@ -11,37 +9,54 @@ const teamMemberQuestions = [{
   name: "teamMemberName"
 },
 {
-  type: "input",
+  type: "number",
+  message: "Team member's ID number:",
+  name: "teamMemberID"
+},
+{
+  type: "list",
   message: "Team member's role:",
-  choices: roleChoices,
-  name: "role"
+  name: "role",
+  choices: ["Engineer", "Intern"]
 }];
 
-const GitHubQuestion = [{
+const GitHubQuestion = {
   type: "input",
   message: "Engineer's GitHub username:",
   name: "GitHub"
-}]
+}
 
-const currentSchoolQuestion = [{
+const currentSchoolQuestion = {
   type: "input",
   message: "Intern's current school:",
   name: "currentSchool"
-}]
-
-const askAgain = [{
-  type: "input",
-  message: "Would you like to add another team member?",
-  name: "addTeamMember",
-  choices: yesNo
-}] 
-
-function askTeamQuestions(){
-  inquirer
-  .prompt(teamMemberQuestions)
 }
 
+const askAgain = {
+  type: "list",
+  message: "Would you like to add another team member?",
+  name: "addTeamMember",
+  choices: ["Yes", "No"]
+}
+/*
+function askTeamMemberQuestions(){
+  inquirer
+  .prompt(teamMemberQuestions)
+  .then(teamMemberQuestions => {
+    if (teamMemberQuestions.role = roleChoices[0]){
+      inquirer
+      .prompt(GitHubQuestion, askAgain)
+      .then(askTeamMemberQuestions())
+    }
+    else { 
+    inquirer
+    .prompt(currentSchoolQuestion, askAgain)
+    .then(askTeamMemberQuestions())
+    }
+  })
+}
 
+*/
 /* This prompts the user about the manager (these are required fields).
 The user is then asked how many engineers he or she would like to add to the profile. */
 
@@ -61,10 +76,10 @@ inquirer.prompt([{
   name: "officeNumber"
 },
 {
-  type: "input",
+  type: "list",
   message: "Would you like to add a team member?",
   name: "addTeamMember",
-  choices: yesNo
+  choices: ["Yes", "No"]
 }
 
 ])
@@ -120,23 +135,35 @@ const managerRow = `<div class="row">
 /* If the manager chooses to add engineer, the following prompts are asked of the user, looped through a
 certain number of times depending on how many engineers the user wishes to provide. */
 
-if (ManagerQuestions.addTeamMember = yesNo[0]){
+if (ManagerQuestions.addTeamMember == "Yes"){
   inquirer
   .prompt(teamMemberQuestions)
   .then(teamMemberQuestions => {
-    if (teamMemberQuestions.role = roleChoices[0]){
+    console.log(teamMemberQuestions.role)
+    if (teamMemberQuestions.role == "Engineer"){
       inquirer
-      .prompt(GitHubQuestion, askAgain)
-      .then(promptAgain => {
-        if(promptAgain.askAgain = yesNo[0]){
-          askTeamMemberQuestions();
+      .prompt([GitHubQuestion, askAgain])
+      .then(teamMemberQuestions => {
+        if(teamMemberQuestions.askAgain == "Yes"){
+          console.log("//");
+        }
+        else if (teamMemberQuestions.askAgain == "No"){
+          console.log("000");
+        }
+        })
+      }
+    else if (teamMemberQuestions.role == "Intern") {
+      console.log(teamMemberQuestions.role);
+      inquirer
+      .prompt([currentSchoolQuestion, askAgain])
+      .then(teamMemberQuestions => {
+        if (teamMemberQuestions.askAgain == "Yes"){
+          console.log("//");
+        }
+        else if (teamMemberQuestions.askAgain == "No"){
+          console.log("000");
         }
       })
-    }
-    else {
-      inquirer
-      .prompt(currentSchoolQuestion, askAgain)
-      .then()
     }
   }
   )
