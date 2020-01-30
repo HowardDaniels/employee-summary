@@ -4,6 +4,9 @@ const Employee = require("./test/Employee.test");
 const yesNo = ["Yes", "No"];
 const roleChoices = ["Engineer", "Intern"];
 
+/* This prompts the user about the manager (these are required fields).
+The user is then asked how many engineers he or she would like to add to the profile. */
+
 inquirer.prompt([{
   type: "input",
   message: "Manager name:",
@@ -26,8 +29,10 @@ inquirer.prompt([{
 }
 ])
 
-.then(answers => {  
-  
+.then(ManagerQuestions => {
+
+  /* This is the manager profile (used only if the user inputs a manager profile. */
+
   const managerProfile = `<html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -38,14 +43,14 @@ inquirer.prompt([{
            <div class="col-md-3">
         <div class="row" id="top">
             <br>
-            <p id="name">${answers.name}</p>
+            <p id="name">${ManagerQuestions.name}</p>
             <p id="role">Manager</p>
             <br>
         </div>
        <div class="row" id="bottom">
            <table id="infotable">
-               <tr><td>ID: ${answers.ID}</td></tr>
-               <tr><td>Office number: ${answers.officeNumber}</td></tr>
+               <tr><td>ID: ${ManagerQuestions.ID}</td></tr>
+               <tr><td>Office number: ${ManagerQuestions.officeNumber}</td></tr>
            </table>
        </div>
        </div>
@@ -53,28 +58,35 @@ inquirer.prompt([{
 </body>
 </html>`;
 
+/* This is the row for the manager's data, to be used if the user chooses to add engineers and/or interns
+in addition to a manager. */
+
 const managerRow = `<div class="row">
 <div class="col-md-3">
 <div class="row" id="top">
  <br>
- <p id="name">${answers.name}</p>
+ <p id="name">${ManagerQuestions.name}</p>
  <p id="role">Manager</p>
  <br>
 </div>
 <div class="row" id="bottom">
 <table id="infotable">
-    <tr><td>ID: ${answers.ID}</td></tr>
-    <tr><td>Office number: ${answers.officeNumber}</td></tr>
+    <tr><td>ID: ${ManagerQuestions.ID}</td></tr>
+    <tr><td>Office number: ${ManagerQuestions.officeNumber}</td></tr>
 </table>
 </div>
 </div>`;
 
+/* If the manager chooses to add engineer, the following prompts are asked of the user, looped through a
+certain number of times depending on how many engineers the user wishes to provide. */
 
-
-  if (answers.engineers > 0){
-    arr = [];
-    for (i = 1; i < (answers.engineers + 1); i++){
-      arr.push(
+  if (ManagerQuestions.engineers > 0){
+    engineerQuestions = [];
+    console.log("STARTS HERE")
+    console.timeLog(JSON.stringify(ManagerQuestions.engineers))
+    console.log(ManagerQuestions)
+    for (i = 1; i < (ManagerQuestions.engineers + 1); i++){
+        engineerQuestions.push(
       {
         type: "input",
         message: "Engineer #" + i  + "'s name:",
@@ -91,18 +103,25 @@ const managerRow = `<div class="row">
         name: "engineerGitHub" + i,
       });
     }
-    arr.push(
+
+/* This question asks how many interns the user would like to provide, and is only asked once. */
+
+    engineerQuestions.push(
       {
         type: "number",
         message: "How many interns would you like to add?",
         name: "interns"
       });
 
-      const engineerNum = ((arr.length - 1) / 3);
+      const engineerNum = ((engineerQuestions.length - 1) / 3);
 
 inquirer
-.prompt(arr)
-.then(answers => {
+.prompt(engineerQuestions)
+.then(ManagerQuestions => {
+  console.log("MY PRINT")
+  console.log(engineerQuestions);
+
+
 var engineerNameNumbers = [];
 var engineerIDNumbers = [];
 var engineerGitHubNumbers = [];
@@ -123,6 +142,7 @@ var engineerRows = [];
     <div class="row" id="top">
      <br>
      <p id="name">${engineerNameNumbers[i]}</p>
+     ${answers.engineerGithub}
      <p id="role">Engineer</p>
      <br>
     </div>
@@ -151,10 +171,12 @@ const formattedEngineerRows = engineerRows.join("");
   </body>
   </html>`;
 
-    if (answers.interns > 0){
-      arr2 = [];
-      for (i = 1; i < (answers.interns + 1); i++){
-        arr2.push({
+/* Prompts the user about the interns. */
+
+    if (engineerQuestions.interns > 0){
+      internQuestions = [];
+      for (i = 1; i < (engineerQuestions.interns + 1); i++){
+        internQuestions.push({
          type: "input",
          message: "Intern #" + i  + "'s name:",
          name: "internName" + i,
@@ -171,9 +193,9 @@ const formattedEngineerRows = engineerRows.join("");
        }
        );
        }
-       console.log(arr2);
+       console.log(internQuestions);
        inquirer
-       .prompt(arr2)
+       .prompt(internQuestions);
      
    //      console.log("Profile of manager, engineers, and interns is ready.")
        
