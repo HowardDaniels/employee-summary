@@ -4,6 +4,32 @@ const Employee = require("./test/Employee.test");
 const yesNo = ["Yes", "No"];
 const roleChoices = ["Engineer", "Intern"];
 
+const teamMemberQuestions = [{
+      
+  type: "input",
+  message: "Team member's name:",
+  name: "teamMemberName"
+},
+{
+  type: "input",
+  message: "Team member's role:",
+  choices: roleChoices,
+  name: "role"
+}];
+
+const GitHubQuestion = [{
+  type: "input",
+  message: "Engineer's GitHub username:",
+  name: "GitHub"
+}]
+
+const currentSchoolQuestion = [{
+  type: "input",
+  message: "Intern's current school:",
+  name: "currentSchool"
+}]
+
+
 /* This prompts the user about the manager (these are required fields).
 The user is then asked how many engineers he or she would like to add to the profile. */
 
@@ -81,12 +107,15 @@ const managerRow = `<div class="row">
 certain number of times depending on how many engineers the user wishes to provide. */
 
   if (ManagerQuestions.teamMembers > 0){
-    teamMemberQuestions = [];
+ //   teamMemberQuestions = [];
     console.log("STARTS HERE");
     console.timeLog(JSON.stringify(ManagerQuestions.teamMembers));
     console.log(ManagerQuestions);
+
+
+    /*
     for (i = 1; i < (ManagerQuestions.teamMembers + 1); i++){
-        engineerQuestions.push(
+        teamMemberQuestions.push(
       {
         type: "input",
         message: "Engineer #" + i  + "'s name:",
@@ -103,15 +132,16 @@ certain number of times depending on how many engineers the user wishes to provi
         name: "engineerGitHub" + i,
       });
     }
-
+*/
 /* This question asks how many interns the user would like to provide, and is only asked once. */
-
+/*
     engineerQuestions.push(
       {
         type: "number",
         message: "How many interns would you like to add?",
         name: "interns"
       });
+      */
 /*
       const engineerNum = ((engineerQuestions.length - 1) / 3);
 */
@@ -258,5 +288,5 @@ const formattedEngineerRows = engineerRows.join("");
     });
     }
   });
-}
+}*/
 });
