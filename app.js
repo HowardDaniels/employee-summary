@@ -181,6 +181,12 @@ var currentSchoolLast =
 </body>
 </html>`
 
+fs.appendFile("output/index.html", currentSchoolLast, function(err) {
+  if (err) {
+    throw err;
+  }
+});
+
 
         }
       })
