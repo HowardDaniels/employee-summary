@@ -51,7 +51,8 @@ function askTeamMemberQuestions(){
 /* HTML Code #3: Engineer info in HTML (minus the GitHub account)  */
       var engineerRow =
 
-      `<div class="row">
+      `<br>
+      <div class="row">
                  <div class="col-md-3">
               <div class="row" id="top">
                   <br>
@@ -76,11 +77,15 @@ function askTeamMemberQuestions(){
         if(gitAskAgain.addAnotherTeamMember == "Yes"){
           console.log("//");
 /* HTML Code #4: GitHub table row for a team member other than the last team member to be entered  */
-        var GitHubRow = 
+        var GitHubNotLast = 
 
-        `<tr><td>GitHub: ${gitAskAgain.GitHub}</td></tr>`;
+        `<tr><td>GitHub account: <a href="https://www.github.com/${gitAskAgain.GitHub}">${gitAskAgain.GitHub}</a></td></tr>
+        </table>
+        </div>
+        </div>
+        </div>`;
 
-        fs.appendFile("output/index.html", GitHubRow, function(err) {
+        fs.appendFile("output/index.html", GitHubNotLast, function(err) {
           if (err) {
             throw err;
           }
@@ -93,10 +98,22 @@ function askTeamMemberQuestions(){
 
           /* HTML Code #5: GitHub table row + end of document for last team member entered who is also an engineer. */
 
-          var endDocument = 
+          var GitHubPlusEnd = 
 
-          `</table>
-          </div>`
+          
+            `<tr><td>GitHub account: <a href="https://www.github.com/${gitAskAgain.GitHub}">${gitAskAgain.GitHub}</a></td></tr>
+            </table>
+            </div>
+            </div>
+            </div>
+        </body>
+    </html>`;
+
+    fs.appendFile("output/index.html", GitHubPlusEnd, function(err) {
+      if (err) {
+        throw err;
+      }
+    });
 
         }
         })
@@ -105,17 +122,66 @@ function askTeamMemberQuestions(){
     else if (teamMemberQuestions.role == "Intern") {
       console.log(teamMemberQuestions.role);
       /* HTML Code #6: Intern info up to but not including the current school */
+
+var InternRow =
+`<br>
+        <div class="row">
+            <div class="col-md-3">
+         <div class="row" id="top">
+             <br>
+             <p id="name">${teamMemberQuestions.teamMemberName}</p>
+             <p id="role">Intern</p>
+             <br>
+         </div>
+        <div class="row" id="bottom">
+            <table id="infotable">
+                <tr><td>ID: ${teamMemberQuestions.teamMemberID}</td></tr>`
+
+        fs.appendFile("output/index.html", InternRow, function(err) {
+          if (err) {
+            throw err;
+          }
+        });
+
+              
+
       inquirer
       .prompt(schoolAskAgain)
       .then(schoolAskAgain => {
         if (schoolAskAgain.addAnotherTeamMember == "Yes"){
           console.log("//");
       /* HTML Code #7: Current school info for interns other than the last team member */
+
+var currentSchoolNotLast = 
+
+`<tr><td>Current School: ${schoolAskAgain.currentSchool}</td></tr>
+</table>
+</div>
+</div>
+</div>`
+
+fs.appendFile("output/index.html", InternRow, function(err) {
+  if (err) {
+    throw err;
+  }
+});
+
           askTeamMemberQuestions2();
         }
         else if (schoolAskAgain.addAnotherTeamMember == "No"){
           console.log("000");
           /* HTML Code #8: Current school info for interns + end of code for last team member */
+var currentSchoolLast =
+
+`<tr><td>Current School: George Washington University</td></tr>
+</table>
+</div>
+</div>
+</div>
+</body>
+</html>`
+
+
         }
       })
     }
@@ -132,7 +198,8 @@ function askTeamMemberQuestions2(){
 
       var engineerRow2 = 
 
-`<div class="row">
+`<br>
+<div class="row">
            <div class="col-md-3">
         <div class="row" id="top">
             <br>
@@ -158,6 +225,22 @@ function askTeamMemberQuestions2(){
         if(gitAskAgain.addAnotherTeamMember == "Yes"){
           console.log("//");
           /* HTML Code #10: GitHub table row for a team member other than the last team member to be entered  */
+
+          var GitHubNotLast2 = 
+          `<tr><td>GitHub account: <a href="https://www.github.com/JohnDoeGitsIt">JohnDoeGitsIt</a></td></tr>
+          </table>
+      </div>
+      </div>
+      </div>`
+
+      fs.appendFile("index.html", GitHubNotLast2, function(err) {
+        if (err) {
+          throw err;
+        }
+      
+      })
+
+
 
           askTeamMemberQuestions();
         }
