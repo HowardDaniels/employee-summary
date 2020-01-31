@@ -56,7 +56,7 @@ function askTeamMemberQuestions(){
                  <div class="col-md-3">
               <div class="row" id="top">
                   <br>
-                  <p id="name">${teamMemberRoleQuestions.teamMemberName}</p>
+                  <p id="name">${teamMemberQuestions.teamMemberName}</p>
                   <p id="role">Engineer</p>
                   <br>
               </div>
@@ -209,7 +209,7 @@ function askTeamMemberQuestions2(){
            <div class="col-md-3">
         <div class="row" id="top">
             <br>
-            <p id="name">${teamMemberRoleQuestions.teamMemberName}</p>
+            <p id="name">${teamMemberQuestions.teamMemberName}</p>
             <p id="role">Engineer</p>
             <br>
         </div>
@@ -408,54 +408,177 @@ inquirer.prompt([{
 /* HTML Code 2: This is the row for the manager's data, to be used if the user chooses to add engineers and/or interns
 in addition to a manager. */
 
-const managerRow = `<div class="row">
-<div class="col-md-3">
-<div class="row" id="top">
- <br>
- <p id="name">${ManagerQuestions.name}</p>
- <p id="role">Manager</p>
- <br>
-</div>
-<div class="row" id="bottom">
-<table id="infotable">
-    <tr><td>ID: ${ManagerQuestions.ID}</td></tr>
-    <tr><td>Office number: ${ManagerQuestions.officeNumber}</td></tr>
-</table>
-</div>
-</div>`;
+const managerRow = `<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="../templates/assets/manager.css">
+</head>
+<body>
+       <div class="row">
+           <div class="col-md-3">
+        <div class="row" id="top">
+            <br>
+            <p id="name">${ManagerQuestions.name}</p>
+            <p id="role">Manager</p>
+            <br>
+        </div>
+       <div class="row" id="bottom">
+           <table id="infotable">
+               <tr><td>ID: ${ManagerQuestions.ID}</td></tr>
+               <tr><td>Office number: ${ManagerQuestions.officeNumber}</td></tr>
+           </table>
+       </div>
+       </div>
+       </div>`;
 
 /* If the manager chooses to add engineer, the following prompts are asked of the user, looped through a
 certain number of times depending on how many engineers the user wishes to provide. */
 
 if (ManagerQuestions.addTeamMember == "Yes"){
+
+ 
+  fs.writeFile("output/index.html", managerRow, function(err) {
+    if (err) {
+      throw err;
+    }
+  });
+
   inquirer
   .prompt(teamMemberQuestions)
   .then(teamMemberQuestions => {
+
     console.log(teamMemberQuestions.role)
     if (teamMemberQuestions.role == "Engineer"){
+      var engineerRow =
+      `<br>
+      <div class="row">
+                 <div class="col-md-3">
+              <div class="row" id="top">
+                  <br>
+                  <p id="name">${teamMemberQuestions.teamMemberName}</p>
+                  <p id="role">Engineer</p>
+                  <br>
+              </div>
+             <div class="row" id="bottom">
+                 <table id="infotable">
+                     <tr><td>ID: ${teamMemberQuestions.teamMemberID}</td></tr>`;
+      
+                     fs.appendFile("output/index.html", engineerRow, function(err) {
+                      if (err) {
+                        throw err;
+                      }
+                    });        
       inquirer
       .prompt(gitAskAgain)
       .then(gitAskAgain => {
         if(gitAskAgain.addAnotherTeamMember == "Yes"){
           console.log("//");
+          var gitHubNotLast = 
+
+          `<tr><td>GitHub account: <a href="https://www.github.com/${gitAskAgain.GitHub}">${gitAskAgain.GitHub}</a></td></tr>
+          </table>
+          </div>
+          </div>
+          </div>`;
+
+          fs.appendFile("output/index.html", gitHubNotLast, function(err) {
+            if (err) {
+              throw err;
+            }
+          });
+
           askTeamMemberQuestions();
         }
         else if (gitAskAgain.addAnotherTeamMember == "No"){
+
+          
+          var GitHubPlusEnd = 
+
+          
+            `<tr><td>GitHub account: <a href="https://www.github.com/${gitAskAgain.GitHub}">${gitAskAgain.GitHub}</a></td></tr>
+            </table>
+            </div>
+            </div>
+            </div>
+        </body>
+    </html>`;
+
+    fs.appendFile("output/index.html", GitHubPlusEnd, function(err) {
+      if (err) {
+        throw err;
+      }
+    });
+
           console.log("000");
+
+          
         }
         })
       }
     else if (teamMemberQuestions.role == "Intern") {
       console.log(teamMemberQuestions.role);
+      
+var InternRow =
+`<br>
+        <div class="row">
+            <div class="col-md-3">
+         <div class="row" id="top">
+             <br>
+             <p id="name">${teamMemberQuestions.teamMemberName}</p>
+             <p id="role">Intern</p>
+             <br>
+         </div>
+        <div class="row" id="bottom">
+            <table id="infotable">
+                <tr><td>ID: ${teamMemberQuestions.teamMemberID}</td></tr>`
+
+        fs.appendFile("output/index.html", InternRow, function(err) {
+          if (err) {
+            throw err;
+          }
+        });
+
       inquirer
       .prompt(schoolAskAgain)
       .then(schoolAskAgain => {
         if (schoolAskAgain.addAnotherTeamMember == "Yes"){
           console.log("//");
+          
+var currentSchoolNotLast = 
+
+`<tr><td>Current School: ${schoolAskAgain.currentSchool}</td></tr>
+</table>
+</div>
+</div>
+</div>`
+
+fs.appendFile("output/index.html", currentSchoolNotLast, function(err) {
+  if (err) {
+    throw err;
+  }
+});
           askTeamMemberQuestions();
         }
         else if (schoolAskAgain.addAnotherTeamMember == "No"){
           console.log("000");
+
+          var currentSchoolLast =
+
+          `<tr><td>Current School: George Washington University</td></tr>
+          </table>
+          </div>
+          </div>
+          </div>
+          </body>
+          </html>`
+          
+          fs.appendFile("output/index.html", currentSchoolLast, function(err) {
+            if (err) {
+              throw err;
+            }
+          });
+          
+          
         }
       })
     }
