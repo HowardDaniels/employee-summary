@@ -48,34 +48,78 @@ function askTeamMemberQuestions(){
   .then(teamMemberQuestions => {
     console.log(teamMemberQuestions.role)
     if (teamMemberQuestions.role == "Engineer"){
+/* HTML Code #3: Engineer info in HTML (minus the GitHub account)  */
+      var engineerRow =
+
+      `<div class="row">
+                 <div class="col-md-3">
+              <div class="row" id="top">
+                  <br>
+                  <p id="name">${teamMemberRoleQuestions.teamMemberName}</p>
+                  <p id="role">Engineer</p>
+                  <br>
+              </div>
+             <div class="row" id="bottom">
+                 <table id="infotable">
+                     <tr><td>ID: ${teamMemberQuestions.teamMemberID}</td></tr>`;
+      
+                     fs.appendFile("output/index.html", engineerRow, function(err) {
+                      if (err) {
+                        throw err;
+                      }
+                    });
+
+                     
       inquirer
       .prompt(gitAskAgain)
       .then(gitAskAgain => {
         if(gitAskAgain.addAnotherTeamMember == "Yes"){
           console.log("//");
+/* HTML Code #4: GitHub table row for a team member other than the last team member to be entered  */
+        var GitHubRow = 
+
+        `<tr><td>GitHub: ${gitAskAgain.GitHub}</td></tr>`;
+
+        fs.appendFile("output/index.html", GitHubRow, function(err) {
+          if (err) {
+            throw err;
+          }
+        });
+
           askTeamMemberQuestions2();
         }
         else if (gitAskAgain.addAnotherTeamMember == "No"){
           console.log("000");
+
+          /* HTML Code #5: GitHub table row + end of document for last team member entered who is also an engineer. */
+
+          var endDocument = 
+
+          `</table>
+          </div>`
+
         }
         })
       }
+      
     else if (teamMemberQuestions.role == "Intern") {
       console.log(teamMemberQuestions.role);
+      /* HTML Code #6: Intern info up to but not including the current school */
       inquirer
       .prompt(schoolAskAgain)
       .then(schoolAskAgain => {
         if (schoolAskAgain.addAnotherTeamMember == "Yes"){
           console.log("//");
+      /* HTML Code #7: Current school info for interns other than the last team member */
           askTeamMemberQuestions2();
         }
         else if (schoolAskAgain.addAnotherTeamMember == "No"){
           console.log("000");
+          /* HTML Code #8: Current school info for interns + end of code for last team member */
         }
       })
     }
-  }
-  )
+  })
 }
 
 function askTeamMemberQuestions2(){
@@ -84,10 +128,11 @@ function askTeamMemberQuestions2(){
   .then(teamMemberQuestions => {
     console.log(teamMemberQuestions.role)
     if (teamMemberQuestions.role == "Engineer"){
+/* HTML Code #9: Engineer info in HTML (minus the GitHub account)  */
 
-      var engineerRow = `
+      var engineerRow2 = 
 
-<div class="row">
+`<div class="row">
            <div class="col-md-3">
         <div class="row" id="top">
             <br>
@@ -97,36 +142,55 @@ function askTeamMemberQuestions2(){
         </div>
        <div class="row" id="bottom">
            <table id="infotable">
-               <tr><td>ID: ${teamMemberQuestions.teamMemberID}</td></tr>`
+               <tr><td>ID: ${teamMemberQuestions.teamMemberID}</td></tr>`;
+
+               fs.appendFile("index.html", engineerRow2, function(err) {
+                if (err) {
+                  throw err;
+                }
+              
+              })
+          
 
       inquirer
       .prompt(gitAskAgain)
       .then(gitAskAgain => {
         if(gitAskAgain.addAnotherTeamMember == "Yes"){
           console.log("//");
+          /* HTML Code #10: GitHub table row for a team member other than the last team member to be entered  */
+
           askTeamMemberQuestions();
         }
         else if (gitAskAgain.addAnotherTeamMember == "No"){
+
           console.log("000");
+          /* HTML Code #11: GitHub table row + end of document for last team member entered who is also an engineer. */
+
         }
         })
       }
     else if (teamMemberQuestions.role == "Intern") {
       console.log(teamMemberQuestions.role);
+            /* HTML Code #12: Intern info up to but not including the current school */
+
       inquirer
       .prompt(schoolAskAgain)
       .then(schoolAskAgain => {
         if (schoolAskAgain.addAnotherTeamMember == "Yes"){
           console.log("//");
+            /* HTML Code #13: Current school info for interns other than the last team member */
+
           askTeamMemberQuestions();
         }
         else if (schoolAskAgain.addAnotherTeamMember == "No"){
+            /* HTML Code #14: Current school info for interns + end of code for last team member */
+
           console.log("000");
         }
       })
     }
-  }
-  )
+  })
+
 }
 
 
@@ -178,7 +242,7 @@ inquirer.prompt([{
 
 .then(ManagerQuestions => {
 
-  /* This is the manager profile (used only if the user inputs a manager profile. */
+  /* HTML Code 1: This is the manager profile (used only if the user inputs a manager profile. */
 
   const managerProfile = `<html>
 <head>
@@ -205,7 +269,7 @@ inquirer.prompt([{
 </body>
 </html>`;
 
-/* This is the row for the manager's data, to be used if the user chooses to add engineers and/or interns
+/* HTML Code 2: This is the row for the manager's data, to be used if the user chooses to add engineers and/or interns
 in addition to a manager. */
 
 const managerRow = `<div class="row">
