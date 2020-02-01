@@ -2,17 +2,25 @@ const Employee = require("../lib/Employee");
 const app = require("../app.js");
 const fs = require("fs");
 describe("Testing if running", () => {
-  describe("Testing getName()", () => {
-    it("returns true if answers.name is logged", () => {
-     app.askTeamMemberQuestions();
-     fs.readFile("../output/index.html");
-    });
+  describe("Testing askTeamMemberQuestions()", () => {
+    /* asyncAway if doesn't work the first time*/
 
-    it("Incorrect guess returns false", () => {
-      expect(new Employee("Carl").getName("Sheila")).toBe(false);
-    });
+      it("Incorrect guess returns false", () => {
+        app.askTeamMemberQuestions();
+        var fileData;
+        fs.readFile("../employee-summary/output/index.html", "utf8", function(err, data){
+          if (err) throw err
+        fileData = data;
+        });
+        expect(typeof fileData).toEqual("string");
+      });
+
+
+  
+    
+
   });
-
+/*
   describe("guessedCorrectly ", () => {
     it("returns true if name is the same", () => {
       const name = new Employee("Carl");
@@ -25,4 +33,5 @@ describe("Testing if running", () => {
       expect(word.guessedCorrectly()).toBe(false);
     });
   });
+  */
 });
