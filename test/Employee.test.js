@@ -1,9 +1,11 @@
 const Employee = require("../lib/Employee");
-
-describe("Name", () => {
-  describe("provide name", () => {
-    it("String returns true", () => {
-      expect(new Employee("Carl").getName("Carl")).toBe(true);
+const app = require("../app.js");
+const fs = require("fs");
+describe("Testing if running", () => {
+  describe("Testing getName()", () => {
+    it("returns true if answers.name is logged", () => {
+     app.askTeamMemberQuestions();
+     fs.readFile("../output/index.html");
     });
 
     it("Incorrect guess returns false", () => {

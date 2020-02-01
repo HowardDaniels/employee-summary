@@ -42,7 +42,7 @@ const askAgain = {
 const gitAskAgain = [GitHubQuestion, askAgain];
 const schoolAskAgain = [currentSchoolQuestion, askAgain];
 
-function askTeamMemberQuestions(){
+const askTeamMemberQuestions = function askTeamMemberQuestions(){
   inquirer
   .prompt(teamMemberQuestions)
   .then(teamMemberQuestions => {
@@ -143,9 +143,6 @@ var InternRow =
           }
         });
 
-       getName(teamMemberQuestions.teamMemberName);
-           
-
       inquirer
       .prompt(schoolAskAgain)
       .then(schoolAskAgain => {
@@ -195,7 +192,7 @@ fs.appendFile("output/index.html", currentSchoolLast, function(err) {
   })
 }
 
-function askTeamMemberQuestions2(){
+const askTeamMemberQuestions2 = function askTeamMemberQuestions2(){
   inquirer
   .prompt(teamMemberQuestions)
   .then(teamMemberQuestions => {
@@ -596,3 +593,5 @@ else{
   console.log("Profile of manager is ready to view.");
 }
 });
+
+module.exports = {askTeamMemberQuestions: askTeamMemberQuestions, askTeamMemberQuestions2: askTeamMemberQuestions2}
