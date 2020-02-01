@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/HowardDaniels/employee-summary#readme",
   "dependencies": {
     "inquirer": "^7.0.3",
-    "inquirer-recursive": "0.0.6"
+    "inquirer-recursive": "0.0.6",
+    "jest": "^25.1.0"
   }
 }

@@ -1,6 +1,6 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
-const Employee = require("./test/Employee.test");
+const Employee = require("./lib/Employee.js");
 
 const teamMemberQuestions = [{
       
@@ -143,7 +143,8 @@ var InternRow =
           }
         });
 
-              
+       getName(teamMemberQuestions.teamMemberName);
+           
 
       inquirer
       .prompt(schoolAskAgain)

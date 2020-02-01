@@ -1,28 +1,26 @@
-/*const Word = require("../lib/Word");
+const Employee = require("../lib/Employee");
 
-describe("Word class", () => {
-  describe("guessLetter", () => {
-    it("Correct guess returns true", () => {
-      expect(new Word("fish").guessLetter("i")).toBe(true);
+describe("Name", () => {
+  describe("provide name", () => {
+    it("String returns true", () => {
+      expect(new Employee("Carl").getName("Carl")).toBe(true);
     });
 
     it("Incorrect guess returns false", () => {
-      expect(new Word("fish").guessLetter("o")).toBe(false);
+      expect(new Employee("Carl").getName("Sheila")).toBe(false);
     });
   });
 
   describe("guessedCorrectly ", () => {
-    it("returns true if all letters are correct", () => {
-      const word = new Word("hi");
-      word.guessLetter("h");
-      word.guessLetter("i");
-      expect(word.guessedCorrectly()).toBe(true);
+    it("returns true if name is the same", () => {
+      const name = new Employee("Carl");
+      name.getName("Carl");
+      expect(name.guessedCorrectly()).toBe(true);
     });
-    it("returns false if at least one letter is incorrect", () => {
-      const word = new Word("hi");
-      word.guessLetter("h");
-      word.guessLetter("a");
+    it("returns false if name is different", () => {
+      const word = new Employee("Carl");
+      name.getName("Sheila");
       expect(word.guessedCorrectly()).toBe(false);
     });
   });
-}); */
+});
